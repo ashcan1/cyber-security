@@ -1,1 +1,6 @@
-Security_conf.txt
+// Virtual box : download Oracle 
+ bug : turn off secure boots by reboot 
+
+ secure boots  off : if you need work with third party  
+
+ kali linux : mainly uised for advanced penetration testing and security auditing,ali contains several hundred tools which are geared towards various information security tasks, such as Penetration Testing, Security research, Computer Forensics and Reverse Engineering.
