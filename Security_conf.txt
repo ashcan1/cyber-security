@@ -4,3 +4,15 @@
  secure boots  off : if you need work with third party  
 
  kali linux : mainly uised for advanced penetration testing and security auditing,ali contains several hundred tools which are geared towards various information security tasks, such as Penetration Testing, Security research, Computer Forensics and Reverse Engineering.
+
+
+OWASP Broken Web Applications Project is a collection of vulnerable
+ web applications that is distributed on a Virtual Machine. 
+
+
+Metasploitable is an intentionally vulnerable Linux virtual machine that can be used to conduct security training, test security tools, 
+and practice common penetration testing techniques. 
+The VM will run on any recent VMware products and other visualization technologies such as VirtualBox.
+
+ifconfig linux, ipconfig windows  for determine each machines NAT and host-only,IPv4 adrresses 
+Ping for testing connection between VMs
