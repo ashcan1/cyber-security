@@ -1,1 +1,21 @@
-tcpdump.txt
+a) Learn what ‘tcpdump’ does and how to save a PCAP file
+b) In Kali Linux, start a tcpdump on the VirtualBox network interface used for the Host-Only
+network, save output to a PCAP file
+c) Ping the OWASP BWA and Metasploitable VM’s
+d) Browse the webpages of the OWASP BWA machine from your Kali Linux webbrowser
+e) Close the tcpdump
+
+
+ Ip addresses are usually assigned logically so if you're 192.168.56.101 and you booted up your metasploitable machine second then it will probably be 192.168.56.102.
+
+However, since you're just starting I recommend going to your metasploitable machine and logging in with msfadmin:msfadmin as username and password and typing the same ifconfig to double check.
+
+A couple good things to know. Host only allows the VMS to only communicate with each other through your main host machine. They cannot reach outside networks which is good for sending malicious payloads through a network. You cant accidently hurt anyone. Also to double check it's working you can ping the machine using the command ping 'Ifconfig' address of other machine'
+
+This will get you started. On future VMS you won't have access to the login right away so to find the IP address you can scan the subnet (192.168.56.0/24) or do what I said above and see if it's logically assigned to the next increment of IP address. Sometimes you'll be in a situation with a gateway router and can scan the gateway. There are numerous ways to go about this but don't worry about this right now if that doesn't make sense just continue to learn and you'll get it
+
+
+// installed wireshark to see  more information regarding tcpdump 
+// tcpdump : 
+tcpdump is a packet sniffing and packet analyzing tool for a System Administrator to troubleshoot connectivity issues in Linux. It is used to capture, filter, and analyze network traffic such as TCP/IP packets going through your system.
+ It is many times used as a security tool as well
