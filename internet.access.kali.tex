@@ -1,0 +1,9 @@
+// connection kali linux to internet //
+
+It is not broken, it is a feature. Kali comes with networking disabled by default to prevent denouncing your own presence through an unconscionable DHCP request.
+
+You will have to start your connection with the traditional Linux means, something like
+
+ sudo ifconfig eth0 up
+ sudo dhclient eth0
+or some such thing, depending on how you see fit.
