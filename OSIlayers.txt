@@ -1,0 +1,69 @@
+//// OSI model
+7. Application Layer
+Layer seven in the OSI model is known as the ‘application layer’. This is the layer that supports processes for end-users and applications. What happens in this layer? User authentication, service, privacy, data syntax are all identified and processed. Examples of what this layer provides application services for include: www browsers, http, email, transfering files, and network software. FTP and Telnet are completely contained in this layer.
+
+6. Presentation Layer
+The presentation layer (also referred to as the ‘syntax layer’) transforms data into a form the application layer can digest. What happens in this layer, typically, is formatting and encrypting data that is sent across the network. Examples of what this layer provides services for include MPEG, GIF, TIFF, ASCII, and encryption.
+
+5. Session Layer
+The session layer is responsible for initiating, and terminating, connections between different applications. This layer establishes communication connections between remote systems and allows for the flow of data between them. Protocols used in the session layer include: Telnet, SSL, SQL, SSH, and SNMP.
+
+4. Transport Layer
+The transport layer is responsible for ensuring complete data transfer. Packets must get to to their endpoints — error-free and properly sequenced. This layer is of critical importance for both securing the network and avoiding network congestion. Examples of what happens in this layer are SPX, UDP, TCP, and firewalls.
+
+3. Network Layer
+The network layer is responsible for establishing the way in which data is communicated – both in your network and in other networks – via packet forwarding and routing. This layer’s functions include internetworking, handling errors, packet sequencing, congestion control, and, routing and forwarding. Examples include IP, IPX, and AppleTalk DDP.
+
+2. Data Link Layer
+The data link layer is responsible for coding and decoding data packets — aka, ensuring communication between the network and physical layer happens. This layer can be divided into two sub-layers: MAC layer (Media Access Control) and LLC layer (Logical Link Control). The MAC sub-layer handles how the network accesses data and permissions to transmit data; the LLC sub-layer is in charge of flow control, checking errors, and synchronization of frames. Examples of what’s at work in this layer include: Frame Relay, ATM, HDLC, PPP, FDDI, and IEEE 802.5/ 802.2, IEEE 802.3/802.2,
+
+1. Physical Layer
+This is the lowest layer in the OSI model – and it’s fundamental to all the layers above it. This layer is responsible for ensuring your physical assets — hardware, routers, switches, patch panels, cabling, etc. — are powered on and able to send/receive data.
+
+
+/// Open the PCAP from the previous challenge in Wireshark
+Identify DNS requests – what are its properties?
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+BY
+
+Jeff Petters
+JEFF PETTERS
+
+UPDATED: 1/29/2021
+
+The Domain Name System (DNS) is the internet’s version of the Yellow Pages. Back in the olden times, when you needed to find a business’ address, you looked it up in the Yellow Pages. DNS is just like that, except you don’t actually have to look anything up: your internet connected computer does that for you. It’s how your computer knows how to find Google, or ESPN.com, or Varonis.com.
+
+For two computers to communicate on an IP network, protocol dictates that they need an IP address. Think of an IP address like a street address – for one computer to “locate” another, they need to know the other computer’s number. Since most humans are better at remembering names – www.varonis.com – than numbers – 104.196.44.111, they needed a program for computers to translate names into IP addresses.
+
+

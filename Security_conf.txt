@@ -16,3 +16,158 @@ The VM will run on any recent VMware products and other visualization technologi
 
 ifconfig linux, ipconfig windows  for determine each machines NAT and host-only,IPv4 adrresses 
 Ping for testing connection between VMs
+
+
+
+How does Ping work?
+ 
+
+The Ping utility uses the echo request, and echo reply messages within the Internet Control Message Protocol (ICMP), an integral part of any IP network. When a ping command is issued, an echo request packet is sent to the address specified. When the remote host receives the echo request, it responds with an echo reply packet.
+
+By default, the ping command sends several echo requests, typically four or five. The result of each echo request is displayed, showing whether the request received a successful response, how many bytes were received in response, the Time to Live (TTL), and how long the response took to receive, along with statistics about packet loss and round trip times.
+
+
+Ping message format
+ 
+
+The echo request ("ping") is structured as follows:
+
+ 
+
+Byte 0	Byte 1	Byte 2	Byte 3
+Type (8 = IPv4, ICMP; 128 = IPv6, ICMP6)	Code	Header Checksum
+Identifier	Sequence Number
+Payload
+ 
+
+The echo reply must include the exact payload received in the request:
+
+ 
+
+Byte 0	Byte 1	Byte 2	Byte 3
+Type (0 = IPv4, ICMP; 129 = IPv6, ICMP6)	Code	Header Checksum
+Identifier	Sequence Number
+Payload
+
+The Ping utility
+The ping utility has been incorporated into virtually every operating system with network support. While echo request and echo reply are ICMP messages, the exact implementation of the Ping utility varies slightly among manufacturers.
+
+In its simplest form, the ping utility can be run with nothing more than the ping command and a destination. The remote host can be specified either by name or address.
+
+
+ping 168.93.37.2
+
+ping ftp.microsoft.com
+ 
+
+The following is the output of a simple ping to the target host paessler.com:
+
+
+ping paessler.com
+Pinging paessler.com [104.16.182.252] with 32 bytes of data:
+Reply from 104.16.182.252: bytes=32 time=4ms TTL=57
+Reply from 104.16.182.252: bytes=32 time=4ms TTL=57
+Reply from 104.16.182.252: bytes=32 time=4ms TTL=57
+Reply from 104.16.182.252: bytes=32 time=4ms TTL=57
+
+Ping statistics for 104.16.182.252:
+Packets: Sent = 4, Received = 4, Lost = 0 (0% loss),
+Approximate round trip times in milli-seconds:
+Minimum = 4ms, Maximum = 4ms, Average = 4ms
+ 
+
+However, the ping utility also provides several customizable options.
+
+
+Ping switches and variables
+There are numerous switches available for the ping command that allow the default settings to be customized for more specific purposes. Unfortunately, there is no consistency across platforms for the different switches. For example, Windows uses a -n (number) to set how many pings to send, while most Unix systems use a -c (count).
+
+Here are some examples of ping command switches. Generally, using ping -?  will result in a list of switches along with the corresponding letter to use the switch on the operating system.
+
+Number (or count) – sets the number of echo requests, or pings, to be sent. By default, this number is four on most Windows systems, and five on most Unix systems. Setting a higher number allows the ping to continue to run either as a way of gathering more data, for example, to see if the reply time varies, or as a way of ensuring that a system continues to be responsive.
+
+Timeout – changes the timeout before the utility waits for a reply from the destination. On Windows systems, the default value is 4,000 milliseconds, or 4 seconds.
+
+Size – changes the size of the ping packet. The default value on Windows is 32 bytes, many Unix/Linux systems default to 64 bytes.
+
+TTL – sets a different TTL.
+
+IP4 or IP6 – responds with IPv4 or IPv6 addresses. (ping -4/ping -6 in Windows, ping or ping6 in Linux)
+
+Until stopped – keeps running the ping until stopped by the user (-t in Windows)
+
+Ping command syntax for Windows
+-t	Pings the specified host until stopped. To stop - type Control-C
+-a	Resolve adresses to hostnames
+-n
+
+Number of echo requests to send
+-l 	Send buffer size
+-f	Set Don't Fragmet flag in packet (IPv4-only)
+-i	Set Time To Live
+-v	Set Type of Service (Setting has been deprecated)
+-r	Record route for count hops (IPv4-only)
+-s	Timestamp for count hops (IPv4-only)
+-j	Loose source route along host-list (IPv4-only)
+-k	Strict source route along host-list (IPv4-only)
+-w	Timeout in milliseconds to wait for each reply
+-R	Use routing header to test reverse route also (IPv6-only, deprecated per RFC 5095)
+-S	Source address to use
+-c	Routing compartment identifier
+-p	Ping a Hyper-V Network Virtualization provider address
+-4	Force using IPv4
+-6	Force using Ipv6
+ 
+
+Test Your Ping Speed
+
+
+How to use Ping
+For such a small, basic utility, the ping command can be a valuable tool in numerous situations. As a command-line based utility, ping lends itself to easy use in various scripts, allowing for numerous pings to run and be recorded for all manner of usage. For example, the output of the ping command can easily be piped to a text file for later review.
+
+Troubleshooting with Ping
+Perhaps the most common use of the ping utility is in troubleshooting. When trying to use applications or systems over a network, the most important thing to know is if there is actually a working connection. A series of ping commands can help determine what the problem is.
+
+A quick ping by IP address will confirm that the system is on, that there is a connection, and that the two machines can talk to each other.
+
+
+Ping 172.168.9.13
+ 
+
+If the ping is successful by name and IP address, but the response times are long, there may be a routing, network speed, or congestion issue. Even unsuccessful pings can provide valuable troubleshooting information.
+
+If a ping by IP address is successful, but a ping by name fails, then there is a name resolution issue. If the ping fails altogether, you can try to ping other parts of the network to isolate the issue. A successful ping of the default gateway confirms that the network connection is functioning, but that something is interfering with a connection to the remote system.
+
+If you can ping successfully with the same subnet of the remote system, but not the target system itself, then the network connectivity of the remote host is in doubt. If the default gateway cannot be pinged, but the loopback address (127.0.0.1) results in a successful ping, then you would know that the network interface is functioning, but there is no connection to the network.
+
+Ping error
+
+If ping gets no response from the target host, most implementations of ping display nothing or a timeout notification. The result may look like this, for example:
+
+
+Pinging 121.242.124.9 with 32 bytes of data:
+Request timed out.
+Request timed out.
+Request timed out.
+Request timed out.
+ 
+
+Discovery
+Ping can be used as a quick and dirty discovery tool. Since virtually any network connected device will respond to a ping, pinging a range of addresses, for example, would allow an administrator to find all the attached devices in that range, regardless of type of device or operating system.
+
+Monitoring
+Ping can be used to monitor the network availability of devices. A ping command running as a scheduled task can offer rudimentary polling of any networked computer or device without the need to install any additional software agents, and without the need to open additional ports. The most basic of any up/down monitor could be accomplished by running a ping with the ‘run until stopped’ option. When the pings start failing, there is an issue reaching the system.
+
+Obviously, these solutions are greatly improved upon by the addition of a monitoring tool like PRTG, which, while using underlying ping commands, does not rely on someone watching the output, or piping the output to some sort of record.
+
+The standard Ping Sensor runs ping commands in the background. These can be configured to run at specific intervals, or in response to another event. For example, if a sensor reports a connection failure, a ping can determine if there is still a network connection. Or, monitors can be configured to alert an administrator if ping times get too long, or if there is too much packet loss.
+
+Another interesting ping-based sensor is the Cloud Ping Sensor, which pings monitored systems from a remote cloud of distributed systems. This provides the all-important, but difficult to detect, alert when everything is running just fine on your end, but for whatever reason, your systems are unreachable from the outside by remote users or clients.
+
+
+Security
+Simply knowing a system exists and is connected to the network may be enough information for an attacker to begin. Careful analysis of ping replies may yield additional information such as which operating system the target is running, where the machine is located, and so on.
+
+Many hacking tools take advantage of “walking the range”, by pinging every IP address on a targeted network to get a list of what systems are reachable and will respond. As a result, many firewalls are configured to block ping requests from untrusted networks.
+
+
